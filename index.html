@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <title><?= title; ?></title>
+  <!--- ! is to render as html--->
+  <?!= include("page-css"); ?>
+
+</head>
+<body>
+
+
+<div class="container">
+
+  <div id="modelXO" class="modal">
+    <div class="modal-content">
+      <h4>New X00 number.</h4>
+      <p>This new X00 number is Not Found in the ASIN Database. Would you like to add it?</p>
+    </div>
+    <div class="modal-footer">
+      <a id="new-x00-value-yes" class="modal-close waves-effect waves-green btn-flat">Yes</a>
+      <a id="new-x00-value-no" class="modal-close waves-effect waves-red btn-flat">No</a>
+    </div>
+  </div>
+
+  <div id="modelDuplicateItem" class="modal">
+    <div class="modal-content">
+      <h4>Hey! This item number is already scanned.</h4>
+      <p>Please scan a different item. This item number has already been scanned for this auction number.</p>
+    </div>
+    <div class="modal-footer">
+      <a id="duplicateItem-close" class="modal-close waves-effect waves-red btn-flat">Close</a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col l10 m10 m8">
+
+    </div>
+  </div>
+
+  <h3><?= title; ?></h3>
+
+  <div class="row">
+    <div class="input-field col l3 m3 s6">
+      <input class="blue-text validate" id="search" type="text">
+      <label class="black-text" for="search"><strong>Search</strong></label>
+    </div>
+
+    <div class="input-field col l4 m4 s6">
+      <input disabled value="Status" id="status" type="text" class="active">
+      <label for="status">status</label>
+    </div>
+
+    <div class="input-field col l2 m2 s6">
+      <input id="auctionItem" type="text" class="validate">
+      <label for="auctionItem">Auction-Item Number</label>
+    </div>
+
+    <div class="input-field col l3 m3 s6">
+      <select id="employee">
+        <option disabled selected>Choose your name</option>
+        <?!= list;?>
+      </select>
+      <label>Scanner:</label>
+    </div>
+    <div class="input-field col l2 m2 s12">
+      <input id="asin" type="text" class="validate">
+      <label for="asin">ASIN</label>
+    </div>
+    <div class="input-field col l2 m2 s12">
+      <input id="xo" type="text" class="validate">
+      <label for="xo">XO</label>
+    </div>
+    <div class="input-field col l2 m2 s12">
+      <input id="upc" type="text" class="validate">
+      <label for="upc">UPC</label>
+    </div>
+    <div class="input-field col l1 m1 s2">
+      <input id="auction" type="number" class="validate" disabled>
+      <label for="auction">Auction</label>
+    </div>
+    <div class="input-field col l1 m1 s2">
+      <input id="item" type="number" class="validate" disabled>
+      <label for="item">Item</label>
+    </div>
+    <div class="input-field col l4 m12 s12">
+      <input id="comment" type="text" class="validate">
+      <label for="comment">Comment</label>
+    </div>
+  </div><!--- CLOSE ROW--->
+  <div class="row">
+    <form class="col l8 m12 s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="title" class="materialize-textarea"></textarea>
+          <label for="title">Title</label>
+        </div>
+      </div>
+    </form>
+    <div class="input-field col l2 m4 s4">
+      <input class="active validate" id="price" type="text">
+      <label for="price">Price</label>
+    </div>
+
+    <div class="input-field col l2 m4 s4">
+      <select id="category" class="browser-default">
+        <option disabled selected>Choose Category</option>
+
+        <?!= listCat;?>
+      </select>
+
+    </div>
+
+  </div><!--- CLOSE ROW--->
+
+  <div class="row">
+
+    <div class="input-field col s4">
+      <input class="active validate" id="URL" type="text">
+      <label for="URL">URL</label>
+    </div>
+    <div class="input-field col s4">
+      <input class="active validate" id="img1url" type="text">
+      <label for="img1url">Image 1</label>
+      <span class="helper-text" data-error="wrong" data-success="right">Only Change the link if the image is not a good one</span>
+    </div>
+    <div class="input-field col s4">
+      <input class="active validate" id="img2url" type="text">
+      <label for="img2url">Image 2</label>
+
+    </div>
+  </div><!--- CLOSE ROW--->
+
+  <div class="row">
+    <div class="input-field col s4">
+      <h5 id="amazonLink">Amazon link</h5>
+      <h5 id="camelLink">CamelCamelCamel</h5>
+    </div>
+    <div class="input-field col s4">
+      <img class="responsive-img" id="img1">
+    </div>
+    <div class="input-field col s4">
+      <img class="responsive-img" id="img2">
+    </div>
+  </div><!--- CLOSE ROW--->
+
+
+  <div class="row">
+    <div class="col s2">
+      <button id="donebtn" class="waves-effect waves-light btn-small  blue darken-3"><i class="material-icons left">chevron_right</i>Done
+      </button>
+    </div>
+    <!--<div class="col s3 offset-s7">
+      <button id="addbtn" class="waves-effect waves-light btn-small  red lighten-3"><i class="material-icons right">chevron_right</i>Add
+        ASIN to DataBase
+      </button>
+    </div>-->
+
+  </div><!--- CLOSE ROW--->
+
+
+</div><!--- CLOSE CONTAINER--->
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<?!= include("page-js");?>
+
+</body>
+</html>
